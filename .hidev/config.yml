@@ -1,0 +1,9 @@
+package:
+    type:           yii2-extension
+    name:           themes-site
+    title:          Themes site
+    headline:       Themes
+    keywords:       themes, site
+    namespace:      hiqdev\themes\site
+    description:    |
+        Themes site.
