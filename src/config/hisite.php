@@ -14,6 +14,7 @@ return [
     'container' => [
         'definitions' => [
             \hiqdev\thememanager\menus\AbstractMainMenu::class => \hiqdev\themes\site\menus\MainMenu::class,
+            \hiqdev\thememanager\menus\AbstractNavbarMenu::class => \hiqdev\themes\site\menus\NavbarMenu::class,
         ],
     ],
     'modules' => [
