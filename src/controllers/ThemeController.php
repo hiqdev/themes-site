@@ -1,7 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tofid
- * Date: 18.01.17
- * Time: 15:28
- */
+
+namespace hiqdev\themes\site\controllers;
+
+use yii\web\Controller;
+
+class ThemeController extends Controller
+{
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    public function actionCatalog()
+    {
+        return $this->render('catalog');
+    }
+}
