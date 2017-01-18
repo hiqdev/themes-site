@@ -19,4 +19,29 @@ use Yii;
  */
 class NavbarMenu extends MainMenu
 {
+    public function items()
+    {
+        return [
+            [
+                'label' => Yii::t('hiqdev:themes', 'Help Center'),
+                'url' => ['#'],
+            ],
+            [
+                'label' => Yii::t('hiqdev:themes', 'Team'),
+                'url' => ['#'],
+            ],
+            [
+                'label' => Yii::t('hiqdev:themes', 'Blog'),
+                'url' => ['#'],
+            ],
+            [
+                'label' => Yii::t('hiqdev:themes', 'About'),
+                'url' => ['#'],
+            ],
+            [
+                'label' => Yii::t('hiqdev:themes', 'Contact Us'),
+                'url' => ['/site/contacts'],
+            ],
+        ];
+    }
 }
