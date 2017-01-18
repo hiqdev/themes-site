@@ -8,4 +8,9 @@
  * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
  */
 
-return [];
+return [
+    'Yii2 themes' => '',
+    'News' => '',
+    'About' => '',
+    'Contacts' => '',
+];
