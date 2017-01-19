@@ -12,7 +12,7 @@ return [
     'id' => 'themes-site',
     'name' => 'Themes site',
     'controllerNamespace' => 'hiqdev\\themes\\site\\controllers',
-    'defaultRoute' => 'theme/index',
+    'defaultRoute' => 'theme',
     'container' => [
         'definitions' => [
             \hiqdev\thememanager\menus\AbstractMainMenu::class => \hiqdev\themes\site\menus\MainMenu::class,
