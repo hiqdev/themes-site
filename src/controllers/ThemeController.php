@@ -21,18 +21,22 @@ class ThemeController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', ['models' => $this->getModels()]);
     }
 
     public function actionCatalog()
     {
-        $models = $this->themeRepository->getThemes();
         $dataProvider = new ArrayDataProvider([
-            'allModels' => $models,
+            'allModels' => $this->getModels(),
         ]);
 
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    protected function getModels()
+    {
+        return $this->themeRepository->getThemes();
     }
 }
