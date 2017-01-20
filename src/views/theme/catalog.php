@@ -2,7 +2,8 @@
 
 use yii\widgets\ListView;
 
-$this->params['breadcrumbs'][] = Yii::t('hiqdev:themes', 'Yii2 themes catalog');
+$this->title = Yii::t('hiqdev:themes', 'Catalog');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

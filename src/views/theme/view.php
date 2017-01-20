@@ -2,8 +2,9 @@
 
 use yii\helpers\Html;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hiqdev:themes', 'Yii2 themes catalog'), 'url' => ['/theme/catalog']];
-$this->params['breadcrumbs'][] = $model->label;
+$this->title = $model->label;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hiqdev:themes', 'Catalog'), 'url' => ['/theme/catalog']];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

@@ -23,7 +23,7 @@ class MainMenu extends \hiqdev\yii2\menus\Menu
     {
         return [
             'themes' => [
-                'label' => Yii::t('hiqdev:themes', 'Yii2 themes'),
+                'label' => Yii::t('hiqdev:themes', 'Catalog'),
                 'url' => ['/theme/catalog'],
             ],
         ];

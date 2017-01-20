@@ -4,6 +4,8 @@ use hiqdev\themes\obaju\widgets\BannerCarousel;
 use hiqdev\themes\obaju\widgets\GoodsCarousel;
 use yii\helpers\Html;
 
+$this->title = Yii::$app->name;
+
 ?>
 
 <div class="container">
