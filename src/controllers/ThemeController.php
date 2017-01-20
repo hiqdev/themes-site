@@ -53,8 +53,8 @@ class ThemeController extends Controller
 
     protected function getModel($name)
     {
-        return array_filter($this->getModels(), function ($model) use ($name) {
+        return reset(array_filter($this->getModels(), function ($model) use (&$name) {
             return $model->name === $name;
-        });
+        }));
     }
 }
