@@ -21,4 +21,9 @@ class Theme extends Model
             'screenshot' => Yii::t('hiqdev:themes', 'Screenshot'),
         ];
     }
+
+    public function getLink()
+    {
+        return ['/theme/view', 'name' => $this->name];
+    }
 }
