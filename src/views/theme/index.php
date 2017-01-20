@@ -75,34 +75,7 @@ use yii\helpers\Html;
         <?= GoodsCarousel::widget([
             'items' => $models,
             'formatter' => function ($model) {
-                $out = <<<"HTML"
-                <div class="item">
-                    <div class="product">
-                        <div class="flip-container">
-                            <div class="flipper">
-                                <div class="front">
-                                    <a href="detail.html">
-                                        <img src="http://obaju.ondrejsvestka.cz/img/product1_2.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                                <div class="back">
-                                    <a href="detail.html">
-                                        <img src="http://obaju.ondrejsvestka.cz/img/product1_2.jpg" alt="" class="img-responsive">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="detail.html" class="invisible">
-                            <img src="http://obaju.ondrejsvestka.cz/img/product1_2.jpg" alt="" class="img-responsive">
-                        </a>
-                        <div class="text">
-                            <h3><a href="detail.html">{$model->label}</a></h3>
-                        </div>
-                    </div>
-                </div>
-HTML;
-
-                return $out;
+                return '<div class="item">'. $this->render('_item', compact('model')) . '</div>';
             }
         ]) ?>
     </div>
