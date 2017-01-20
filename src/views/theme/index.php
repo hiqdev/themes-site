@@ -75,7 +75,7 @@ use yii\helpers\Html;
         <?= GoodsCarousel::widget([
             'items' => $models,
             'formatter' => function ($model) {
-                return '<div class="item">'. $this->render('_item', compact('model')) . '</div>';
+                return '<div class="item">' . $this->render('_item', compact('model')) . '</div>';
             }
         ]) ?>
     </div>
@@ -93,9 +93,20 @@ use yii\helpers\Html;
     </div>
 </div>
 
+<div class="box text-center" data-animate="fadeInUp">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="text-uppercase">From our blog</h3>
+
+            <p class="lead">What's new in the world of fashion? <a href="blog.html">Check our blog!</a>
+            </p>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 
-    <div class="col-md-12 animated fadeInUp" data-animate="fadeInUp" style="opacity: 0;">
+    <div class="col-md-12" data-animate="fadeInUp">
 
         <div id="blog-homepage" class="row">
             <div class="col-sm-6">
@@ -130,6 +141,5 @@ use yii\helpers\Html;
             </div>
 
         </div>
-        <!-- /#blog-homepage -->
     </div>
 </div>
