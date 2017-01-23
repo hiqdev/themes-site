@@ -26,4 +26,20 @@ class Theme extends Model
     {
         return ['/theme/view', 'name' => $this->name];
     }
+
+    public function getImage()
+    {
+        $src = null;
+        if ($this->screenshot) {
+            Yii::$app->assetManager->publish($this->screenshot);
+            $src = Yii::$app->assetManager->getPublishedUrl($this->screenshot);
+        }
+
+        return $src;
+    }
+
+    public function getImages()
+    {
+        return []; // todo: not implemented
+    }
 }
