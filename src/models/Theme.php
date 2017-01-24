@@ -7,10 +7,26 @@ use yii\base\Model;
 
 class Theme extends Model
 {
+    const TYPE_ADMIN = 'admin';
+    const TYPE_SITE = 'site';
+    const TYPE_BLOG = 'blog';
+
     public $label;
     public $name;
     public $description;
+    public $license;
+    public $author;
+    public $type;
     public $screenshot;
+
+    public static function getTypes()
+    {
+        return [
+            static::TYPE_ADMIN => Yii::t('hiqdev:themes', 'Admin panels'),
+            static::TYPE_SITE => Yii::t('hiqdev:themes', 'Site templates'),
+            static::TYPE_BLOG => Yii::t('hiqdev:themes', 'Blog themes'),
+        ];
+    }
 
     public function attributeLabels()
     {
@@ -41,5 +57,9 @@ class Theme extends Model
     public function getImages()
     {
         return []; // todo: not implemented
+    }
+
+    public function getDetailedTheme()
+    {
     }
 }
