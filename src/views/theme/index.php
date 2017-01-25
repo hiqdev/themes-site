@@ -67,7 +67,7 @@ $this->title = Yii::$app->name;
     <div class="box">
         <div class="container">
             <div class="col-md-12">
-                <h2>Hot this week</h2>
+                <h2><?= Yii::t('hiqdev:themes', 'Check out our newest Yii2 themes') ?></h2>
             </div>
         </div>
     </div>

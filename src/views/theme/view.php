@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box" id="details">
-        <h4><?= Yii::t('hiqdev:themes', 'Product detailsl') ?></h4>
+        <h4><?= Yii::t('hiqdev:themes', 'Product details') ?></h4>
 
         <?= $model->description ?>
 
