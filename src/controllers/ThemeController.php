@@ -2,6 +2,8 @@
 
 namespace hiqdev\themes\site\controllers;
 
+use dosamigos\arrayquery\ArrayQuery;
+use hiqdev\themes\site\models\Theme;
 use hiqdev\themes\site\repositories\ThemeRepository;
 use yii\data\ArrayDataProvider;
 use yii\web\Controller;
@@ -22,13 +24,17 @@ class ThemeController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index', ['models' => $this->getModels()]);
+        return $this->render('index', ['models' => $this->getModels()->find()]);
     }
 
-    public function actionCatalog()
+    public function actionCatalog($type = null)
     {
+        $models = $this->getModels()->addCondition('type', $type)->find();
+        if ($type && in_array($type, array_keys(Theme::getTypes()))) {
+            $models = $this->getModels()->addCondition('type', $type)->find();
+        }
         $dataProvider = new ArrayDataProvider([
-            'allModels' => $this->getModels(),
+            'allModels' => $models,
         ]);
 
         return $this->render('catalog', [
@@ -48,13 +54,11 @@ class ThemeController extends Controller
 
     protected function getModels()
     {
-        return $this->themeRepository->getThemes();
+        return new ArrayQuery($this->themeRepository->getThemes());
     }
 
     protected function getModel($name)
     {
-        return reset(array_filter($this->getModels(), function ($model) use (&$name) {
-            return $model->name === $name;
-        }));
+        return $this->getModels()->addCondition('name', $name)->find();
     }
 }
