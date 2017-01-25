@@ -28,6 +28,16 @@ class Theme extends Model
         ];
     }
 
+    public static function getTypesMenuItems()
+    {
+        $items = [];
+        foreach (static::getTypes() as $type => $label) {
+            $items[] = ['label' => $label, 'url' => ['/theme/catalog', 'type' => $type]];
+        }
+
+        return $items;
+    }
+
     public function attributeLabels()
     {
         return [
