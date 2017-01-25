@@ -49,7 +49,8 @@
         "hiqdev/yii2-module-pages": "<2.0 || dev-master",
         "sadovojav/yii2-image-thumbnail": "dev-master",
         "creocoder/yii2-flysystem": "~0.8",
-        "hiqdev/yii2-cart": "<2.0 || dev-master"
+        "hiqdev/yii2-cart": "<2.0 || dev-master",
+        "2amigos/yii2-arrayquery-component": "*"
     },
     "require-dev": {
         "hiqdev/hidev-php": "<2.0",
