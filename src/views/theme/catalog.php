@@ -43,6 +43,7 @@ if ($type) {
         'itemView' => '_item',
         'itemOptions' => [
             'class' => 'col-md-4 col-sm-6',
-        ]
+        ],
+        'emptyTextOptions' => ['class' => 'box'],
     ]) ?>
 </div>
