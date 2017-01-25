@@ -4,8 +4,14 @@ use hiqdev\themes\site\models\Theme;
 use yii\widgets\ListView;
 use yii\widgets\Menu;
 
-$this->title = Yii::t('hiqdev:themes', 'Catalog');
-$this->params['breadcrumbs'][] = $this->title;
+if ($type) {
+    $this->title = Theme::getTypes()[$type];
+    $this->params['breadcrumbs'][] = ['label' =>Yii::t('hiqdev:themes', 'Catalog'), 'url' => ['/theme/catalog']];
+    $this->params['breadcrumbs'][] = $this->title;
+} else {
+    $this->title = Yii::t('hiqdev:themes', 'Catalog');
+    $this->params['breadcrumbs'][] = $this->title;
+}
 
 ?>
 
