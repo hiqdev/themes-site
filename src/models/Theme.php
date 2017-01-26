@@ -62,9 +62,10 @@ class Theme extends Model
         $src = [];
         if ($this->images) {
             foreach ($this->images as $image) {
-                if (is_file(Yii::getAlias($image))) {
-                    Yii::$app->assetManager->publish($image);
-                    $src[] = Yii::$app->assetManager->getPublishedUrl($image);
+                $pathToImage = Yii::getAlias(sprintf('@hiqdev/themes/%s/assets/screenshots/%s', $this->name, $image));
+                if (is_file($pathToImage)) {
+                    Yii::$app->assetManager->publish($pathToImage);
+                    $src[] = Yii::$app->assetManager->getPublishedUrl($pathToImage);
                 }
             }
         }
