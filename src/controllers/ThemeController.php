@@ -29,8 +29,9 @@ class ThemeController extends Controller
 
     public function actionCatalog($type = null)
     {
-        $models = $this->getModels()->addCondition('type', $type)->find();
         if ($type && in_array($type, array_keys(Theme::getTypes()))) {
+            $models = $this->getModels()->addCondition('type', "~{$type}")->find();
+        } else {
             $models = $this->getModels()->addCondition('type', $type)->find();
         }
         $dataProvider = new ArrayDataProvider([
