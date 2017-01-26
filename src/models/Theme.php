@@ -10,21 +10,22 @@ class Theme extends Model
     const TYPE_ADMIN = 'admin';
     const TYPE_SITE = 'site';
     const TYPE_BLOG = 'blog';
+    const TYPE_COMMERCE = 'commerce';
 
+    public $theme;
     public $label;
     public $name;
-    public $description;
-    public $license;
-    public $author;
     public $type;
-    public $screenshot;
+    public $images;
+    public $description;
 
     public static function getTypes()
     {
         return [
-            static::TYPE_ADMIN => Yii::t('hiqdev:themes', 'Admin panels'),
+            static::TYPE_ADMIN => Yii::t('hiqdev:themes', 'Admin templates'),
             static::TYPE_SITE => Yii::t('hiqdev:themes', 'Site templates'),
-            static::TYPE_BLOG => Yii::t('hiqdev:themes', 'Blog themes'),
+            static::TYPE_BLOG => Yii::t('hiqdev:themes', 'Blog templates'),
+            static::TYPE_COMMERCE => Yii::t('hiqdev:themes', 'E-Commerce template'),
         ];
     }
 
@@ -53,23 +54,29 @@ class Theme extends Model
         return ['/theme/view', 'name' => $this->name];
     }
 
-    public function getImage()
+    /**
+     * @return array
+     */
+    public function getImages()
     {
-        $src = null;
-        if ($this->screenshot) {
-            Yii::$app->assetManager->publish($this->screenshot);
-            $src = Yii::$app->assetManager->getPublishedUrl($this->screenshot);
+        $src = [];
+        if ($this->images) {
+            foreach ($this->images as $image) {
+                if (is_file(Yii::getAlias($image))) {
+                    Yii::$app->assetManager->publish($image);
+                    $src[] = Yii::$app->assetManager->getPublishedUrl($image);
+                }
+            }
         }
 
         return $src;
     }
 
-    public function getImages()
+    /**
+     * @return string
+     */
+    public function getImage()
     {
-        return []; // todo: not implemented
-    }
-
-    public function getDetailedTheme()
-    {
+        return reset($this->getImages());
     }
 }

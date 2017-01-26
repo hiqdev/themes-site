@@ -39,6 +39,7 @@ class ThemeController extends Controller
 
         return $this->render('catalog', [
             'dataProvider' => $dataProvider,
+            'type' => $type,
         ]);
     }
 
@@ -59,6 +60,8 @@ class ThemeController extends Controller
 
     protected function getModel($name)
     {
-        return $this->getModels()->addCondition('name', $name)->find();
+        $model = $this->getModels()->addCondition('name', $name)->one();
+
+        return $model;
     }
 }
