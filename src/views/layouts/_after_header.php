@@ -1,0 +1,1 @@
+<?php \hiqdev\themes\site\Asset::register($this) ?>
