@@ -43,9 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
                 </p>
             </div>
-            <?php if ($model->images) : ?>
+            <?php if ($model->getImages()) : ?>
                 <div class="row" id="thumbs">
-                    <?php foreach ($model->images as $src) : ?>
+                    <?php foreach ($model->getImages() as $src) : ?>
                         <div class="col-xs-4">
                             <a href="<?= $src ?>" class="thumb">
                                 <?= Html::img($src, ['class' => 'img-responsive']) ?>
