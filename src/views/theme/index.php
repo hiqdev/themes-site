@@ -13,7 +13,8 @@ $this->title = Yii::$app->name;
         <?= BannerCarousel::widget([
             'items' => $models,
             'formatter' => function ($model) {
-                return Html::img($model->image, ['class' => 'img-responsive']);
+                $out = Yii::$app->thumbnail->img($model->image, Yii::$app->params['thumb.carousel'], ['class' => 'img-responsive']);
+                return $out;
             }
         ]) ?>
     </div>

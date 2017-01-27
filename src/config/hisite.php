@@ -43,13 +43,15 @@ return [
         ],
         'thumbnail' => [
             'class' => \sadovojav\image\Thumbnail::class,
+            'basePath' => '@web',
+            'cachePath' => '@webroot/assets/thumbnails',
             'options' => [
                 'placeholder' => [
-                    'type' => 'url',
+                    'type' => 'js',
                     'backgroundColor' => '#f5f5f5',
                     'textColor' => '#cdcdcd',
-                    'textSize' => 30,
-                    'text' => 'Image not found!',
+                    'textSize' => 16,
+                    'text' => 'Image not found',
                     'random' => false,
                     'cache' => true,
                 ],

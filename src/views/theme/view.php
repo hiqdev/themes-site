@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row" id="productMain">
         <div class="col-sm-6">
             <div id="mainImage">
-                <?= Html::img($model->image, ['class' => 'img-responsive']) ?>
+                <?= Yii::$app->thumbnail->img($model->image, Yii::$app->params['thumb.detail'], ['class' => 'img-responsive']) ?>
             </div>
 
             <div class="ribbon sale">
