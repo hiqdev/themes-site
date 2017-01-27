@@ -12,18 +12,18 @@ use yii\helpers\Url;
         <div class="flipper">
             <div class="front">
                 <a href="<?= Url::to($model->link) ?>">
-                    <?= Html::img($model->getImages()[0], ['class' => 'img-responsive']) ?>
+                    <?= Yii::$app->thumbnail->img($model->getImages()[0], Yii::$app->params['thumb.catalog'], ['class' => 'img-responsive']) ?>
                 </a>
             </div>
             <div class="back">
                 <a href="<?= Url::to($model->link) ?>">
-                    <?= Html::img($model->getImages()[1], ['class' => 'img-responsive']) ?>
+                    <?= Yii::$app->thumbnail->img($model->getImages()[1], Yii::$app->params['thumb.catalog'], ['class' => 'img-responsive']) ?>
                 </a>
             </div>
         </div>
     </div>
     <a href="<?= Url::to($model->link) ?>" class="invisible">
-        <?= Html::img($model->image, ['class' => 'img-responsive']) ?>
+        <?= Yii::$app->thumbnail->img($model->getImages()[0], Yii::$app->params['thumb.catalog'], ['class' => 'img-responsive']) ?>
     </a>
     <div class="text">
         <h3><?= Html::a($model->label, $model->link) ?></h3>
