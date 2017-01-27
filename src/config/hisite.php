@@ -41,5 +41,20 @@ return [
                 ],
             ],
         ],
+        'thumbnail' => [
+            'class' => \sadovojav\image\Thumbnail::class,
+            'options' => [
+                'placeholder' => [
+                    'type' => 'url',
+                    'backgroundColor' => '#f5f5f5',
+                    'textColor' => '#cdcdcd',
+                    'textSize' => 30,
+                    'text' => 'Image not found!',
+                    'random' => false,
+                    'cache' => true,
+                ],
+                'quality' => 62,
+            ],
+        ],
     ],
 ];
