@@ -43,7 +43,7 @@ return [
         ],
         'thumbnail' => [
             'class' => \sadovojav\image\Thumbnail::class,
-            'basePath' => '@web',
+            'basePath' => '@webroot',
             'cachePath' => '@webroot/assets/thumbnails',
             'options' => [
                 'placeholder' => [
