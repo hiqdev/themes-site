@@ -62,7 +62,7 @@ class Theme extends Model
         $src = [];
         if ($this->images) {
             foreach ($this->images as $image) {
-                $pathToImage = Yii::getAlias(sprintf('@hiqdev/themes/%s/assets/screenshots/%s', $this->name, $image));
+                $pathToImage = Yii::getAlias(sprintf('%s/%s', $this->getThemePath(), $image));
                 if (is_file($pathToImage)) {
                     Yii::$app->assetManager->publish($pathToImage);
                     $src[] = Yii::$app->assetManager->getPublishedUrl($pathToImage);
@@ -79,5 +79,13 @@ class Theme extends Model
     public function getImage()
     {
         return reset($this->getImages());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getThemePath()
+    {
+        return sprintf('@hiqdev/themes/%s', $this->name);
     }
 }
