@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 
 $this->title = $model->label;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hiqdev:themes', 'Catalog'), 'url' => ['/theme/catalog']];
@@ -8,39 +9,61 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-
-<div class="col-md-12">
+<div class="col-md-3">
+    <div class="panel panel-default sidebar-menu">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= Yii::t('hiqdev:themes', 'Theme details') ?></h3>
+        </div>
+        <div class="panel-body">
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'label',
+                    [
+                        'attribute' => 'author',
+                        'value' => $model->getAuthor(),
+                        'format' => 'html',
+                    ],
+                    'bootstrap',
+                    [
+                        'attribute' => 'license',
+                        'value' => function () use ($model) {
+                            return Html::a($model->license, ['#' => 'license'], ['class' => 'scroll-to']);
+                        },
+                        'format' => 'html',
+                    ],
+                    'type',
+                ]
+            ]) ?>
+        </div>
+    </div>
+</div>
+<div class="col-md-9">
     <div class="row" id="productMain">
         <div class="col-sm-6">
             <div id="mainImage">
                 <?= Yii::$app->thumbnail->img($model->image, Yii::$app->params['thumb.detail'], ['class' => 'img-responsive']) ?>
             </div>
-
-            <div class="ribbon sale">
-                <div class="theribbon">SALE</div>
-                <div class="ribbon-background"></div>
-            </div>
-            <!-- /.ribbon -->
-
-            <div class="ribbon new">
-                <div class="theribbon">NEW</div>
-                <div class="ribbon-background"></div>
-            </div>
-            <!-- /.ribbon -->
-
         </div>
 
         <div class="col-sm-6">
             <div class="box">
                 <h1 class="text-center"><?= $model->label ?></h1>
-                <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to product details, material
-                        &amp; care and sizing</a>
+                <p class="goToDescription">
+                    <?= Html::a(Yii::t('hiqdev:themes', 'Scroll to product details, material &amp; care and sizing'), ['#' => 'details'], ['class' => 'scroll-to']) ?>
                 </p>
-                <p class="price">$124.00</p>
-
+                <?php if ($model->price !== 0) : ?>
+                    <p class="price"><?= Yii::$app->formatter->asCurrency($model->price, 'usd') ?></p>
+                <?php endif ?>
                 <p class="text-center buttons">
-                    <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                    <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
+                    <?php if ($model->price !== 0) : ?>
+                        <?= Html::a('<i class="fa fa-shopping-cart"></i> ' . Yii::t('hiqdev:themes', 'Add to cart'), '#', [
+                            'class' => 'btn btn-primary',
+                        ]) ?>
+                    <?php endif ?>
+                    <?= Html::a('<i class="fa fa-magic"></i> ' . Yii::t('hiqdev:themes', 'Live Preview'), '#', [
+                        'class' => 'btn btn-default',
+                    ]) ?>
                 </p>
             </div>
             <?php if ($model->getImages()) : ?>
@@ -58,10 +81,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box" id="details">
-        <h4><?= Yii::t('hiqdev:themes', 'Product details') ?></h4>
-
-        <?= $model->description ?>
-
+        <h3><?= Yii::t('hiqdev:themes', 'Product details') ?></h3>
+        <?= $model->getDescription() ?>
         <div class="social">
             <h4><?= Yii::t('hiqdev:themes', 'Show it to your friends') ?></h4>
             <p>
@@ -74,5 +95,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="#" class="email" data-animate-hover="pulse" style="opacity: 1;"><i class="fa fa-envelope"></i></a>
             </p>
         </div>
+    </div>
+
+    <div id="usage" class="box">
+        <h3><?= Yii::t('hiqdev:themes', 'Usage') ?></h3>
+
+    </div>
+
+    <div id="license" class="box">
+        <h3><?= Yii::t('hiqdev:themes', 'License') ?></h3>
+        <?= $model->getLicenseText() ?>
     </div>
 </div>
