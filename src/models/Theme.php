@@ -4,6 +4,8 @@ namespace hiqdev\themes\site\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\Markdown;
+use yii\helpers\StringHelper;
 
 class Theme extends Model
 {
@@ -12,12 +14,21 @@ class Theme extends Model
     const TYPE_BLOG = 'blog';
     const TYPE_COMMERCE = 'commerce';
 
-    public $theme;
     public $label;
     public $name;
     public $type;
     public $images;
     public $description;
+    public $author;
+    public $readme;
+    public $license;
+    public $licenseText;
+    public $bootstrap;
+    public $price = 0;
+
+    public $_description;
+    public $_licenseText;
+    public $_author;
 
     public static function getTypes()
     {
@@ -42,7 +53,7 @@ class Theme extends Model
     public function attributeLabels()
     {
         return [
-            'label' => Yii::t('hiqdev:themes', 'Label'),
+            'label' => Yii::t('hiqdev:themes', 'Theme name'),
             'name' => Yii::t('hiqdev:themes', 'Name'),
             'description' => Yii::t('hiqdev:themes', 'Description'),
             'screenshot' => Yii::t('hiqdev:themes', 'Screenshot'),
@@ -88,4 +99,46 @@ class Theme extends Model
     {
         return sprintf('@hiqdev/themes/%s', $this->name);
     }
+
+    public function getDescription()
+    {
+        return $this->prepareContent('description');
+    }
+
+    public function getAuthor()
+    {
+        return $this->prepareContent('author');
+    }
+
+    public function getLicenseText()
+    {
+        return $this->prepareContent('licenseText');
+    }
+
+    /**
+     * @param string $name Name of attribute
+     * @return mixed|string
+     */
+    protected function prepareContent($name)
+    {
+        $out = '';
+        $cacheAttributeName = '_' . $name;
+        if (!$this->{$cacheAttributeName}) {
+            $file = Yii::getAlias(sprintf('%s%s', $this->getThemePath(), $this->{$name}));
+            if (file_exists($file)) {
+                $fileType = StringHelper::endsWith($file, '.md');
+                $content = file_get_contents($file);
+                switch ($fileType) {
+                    case '.md':
+                        $out = Markdown::process($content, 'gfm');
+                        break;
+                }
+            }
+        } else {
+            $out = $this->$cacheAttributeName;
+        }
+
+        return $out;
+    }
+
 }
