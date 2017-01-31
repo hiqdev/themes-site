@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-md-3">
     <div class="panel panel-default sidebar-menu">
         <div class="panel-heading">
-            <h3 class="panel-title"><?= Yii::t('hiqdev:themes', 'Theme details') ?></h3>
+            <h3 class="panel-title"><?= Yii::t('hiqdev:themes', 'Item details') ?></h3>
         </div>
         <div class="panel-body">
             <?= DetailView::widget([
@@ -86,20 +86,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="social">
             <h4><?= Yii::t('hiqdev:themes', 'Show it to your friends') ?></h4>
             <p>
-                <a href="#" class="external facebook" data-animate-hover="pulse" style="opacity: 1;"><i
-                        class="fa fa-facebook"></i></a>
-                <a href="#" class="external gplus" data-animate-hover="pulse" style="opacity: 1;"><i
-                        class="fa fa-google-plus"></i></a>
-                <a href="#" class="external twitter" data-animate-hover="pulse" style="opacity: 1;"><i
-                        class="fa fa-twitter"></i></a>
-                <a href="#" class="email" data-animate-hover="pulse" style="opacity: 1;"><i class="fa fa-envelope"></i></a>
+                <?= \hiqdev\themes\obaju\widgets\SocialShare::widget() ?>
             </p>
         </div>
     </div>
 
     <div id="usage" class="box">
         <h3><?= Yii::t('hiqdev:themes', 'Usage') ?></h3>
-
+        <?= $this->render('_usage', ['model' => $model]) ?>
     </div>
 
     <div id="license" class="box">
